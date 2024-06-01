@@ -1,6 +1,7 @@
 import zmq
 from zmq.utils import jsonapi
 import json
+from datetime import datetime
 
 
 class BookmarkService:
@@ -46,6 +47,10 @@ class BookmarkService:
             else:
                 response = {'status': 'error', 'message': 'Invalid request'}
             socket.send(jsonapi.dumps(response))
+            print(
+                f"[Bookmark Service] Received '{request['method']}' request:"
+                f" {datetime.now()}"
+            )
 
 
 if __name__ == '__main__':
